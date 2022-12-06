@@ -15,16 +15,24 @@ createApp({
         }
     },
 
+    // create le 10 mail con axios 
     methods:{
+        newEmail(){
+            for (i=0; i<10; i++){
+
+                axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+                .then((response) => {
+                    console.log(response.data);
+                    this.email = response.data.response;
+                }) ;
+            }
+        }
 
     },
 
-    // importata libreria da axios e usata per creare le email
     mounted(){
-        axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-        .then((response) => {
-            console.log(response.data);
-            this.email = response.data.response;
-        }) ;
+      this.newEmail();  
     }     
+        
+
 }).mount('#myapp') 
